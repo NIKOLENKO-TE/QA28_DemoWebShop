@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class CreateNewAccountTests extends TestBase {
+public class LoginTests extends TestBase {
     @BeforeMethod
     public void ensurePrecondition() {
         if (!isLoginLinkPresent()) {
@@ -13,11 +13,10 @@ public class CreateNewAccountTests extends TestBase {
     }
 
     @Test
-    public void registerExistedUserNegativeTest() {
+    public void loginRegisteredUserPositiveTest() {
         clickOnLoginLink();
         fillLoginRegisterForm("admin@gmail.com", "Qwertyuiop$1");
-        clickOnRegistrationButton();
-        Assert.assertTrue(isAlertPresent());
+        clickOnLoginButton();
+        Assert.assertTrue(isSignOutButtonPresent());
     }
 }
-
