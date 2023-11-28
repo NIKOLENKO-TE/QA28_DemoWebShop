@@ -1,13 +1,16 @@
 package com.ait.phonebook.fw;
 
+import com.ait.phonebook.fw.ApplicationManager;
 import com.ait.phonebook.models.Contact;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.Browser;
 
 import java.util.List;
 
 public class ContactHelper extends BaseHelper{
+    protected static ApplicationManager app = new ApplicationManager(System.getProperty("browser", Browser.CHROME.browserName()));
     WebDriver driver;
 
     public ContactHelper(WebDriver driver) {
@@ -40,8 +43,11 @@ public class ContactHelper extends BaseHelper{
     }
 
     public void removeContact() {
+        app.getContact().pause(1000);
         click(By.cssSelector(".contact-item_card__2SOIM"));
+        app.getContact().pause(1000);
         click(By.xpath("//button[.='Remove']"));
+        app.getContact().pause(1000);
     }
 
     public int sizeOfContacts() {
