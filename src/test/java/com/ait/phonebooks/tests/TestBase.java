@@ -1,24 +1,33 @@
 package com.ait.phonebooks.tests;
 
 import com.ait.phonebook.fw.ApplicationManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.openqa.selenium.remote.Browser;
+import org.testng.annotations.*;
 
-public class TestBase{
-    WebDriver driver;
-    protected static ApplicationManager app = new ApplicationManager();
+public class TestBase {
 
-    @BeforeMethod
+    protected static ApplicationManager app = new ApplicationManager(System.getProperty("browser", Browser.CHROME.browserName()));
+
+    @BeforeSuite
     public void setUp() {
+        System.out.println("Before Suite!");
         app.init();
     }
 
+    @BeforeTest
+    public void beforeTest() {
+        System.out.println("***Before Test!");
+    }
 
+    @AfterTest
+    public void afterTest() {
+        System.out.println("***After Test!");
+    }
 
-    @AfterMethod(enabled = true)
+    @AfterSuite
+            (enabled = false)
     public void tearDown() {
+        System.out.println("After Suite!");
         app.stop();
     }
 

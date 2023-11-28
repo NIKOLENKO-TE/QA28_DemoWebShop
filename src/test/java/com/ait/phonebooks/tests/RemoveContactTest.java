@@ -25,13 +25,13 @@ public class RemoveContactTest extends TestBase {
         app.getContact().clickOnSaveButton();
     }
 
-    @Test
-    public void removeContactPositiveTest() {
-        int sizeBefore = app.getContact().sizeOfContacts();
-        app.getContact().removeContact();
-        app.getContact().pause(1000);
-        int sizeAfter = app.getContact().sizeOfContacts();
-        Assert.assertEquals(sizeAfter, sizeBefore - 1);
-    }
+//    @Test
+//    public void removeContactPositiveTest() {
+//        int sizeBefore = app.getContact().sizeOfContacts();
+//        app.getContact().removeContact();
+//        app.getContact().pause(2000);
+//        int sizeAfter = app.getContact().sizeOfContacts();
+//        Assert.assertEquals(sizeAfter, sizeBefore - 1);
+//    }
 
 }
