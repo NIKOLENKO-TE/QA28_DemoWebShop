@@ -10,9 +10,6 @@ import org.openqa.selenium.remote.Browser;
 import java.util.List;
 
 public class ContactHelper extends BaseHelper{
-    protected static ApplicationManager app = new ApplicationManager(System.getProperty("browser", Browser.CHROME.browserName()));
-    WebDriver driver;
-
     public ContactHelper(WebDriver driver) {
         super(driver);
     }
@@ -43,11 +40,8 @@ public class ContactHelper extends BaseHelper{
     }
 
     public void removeContact() {
-        app.getContact().pause(1000);
         click(By.cssSelector(".contact-item_card__2SOIM"));
-        app.getContact().pause(1000);
         click(By.xpath("//button[.='Remove']"));
-        app.getContact().pause(1000);
     }
 
     public int sizeOfContacts() {

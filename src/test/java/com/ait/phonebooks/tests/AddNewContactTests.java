@@ -35,7 +35,7 @@ public class AddNewContactTests extends TestBase {
                 .setEmail("admidnsdskgvjb@gmail.com")
                 .setAddress("Varienstrasse 10").setDescription("Description of input KarlName"));
         app.getContact().clickOnSaveButton();
-//        Assert.assertTrue(app.getContact().isContactCreatedByText("KarlName"));
+        Assert.assertTrue(app.getContact().isContactCreatedByText("KarlName"));
     }
 
     @AfterMethod

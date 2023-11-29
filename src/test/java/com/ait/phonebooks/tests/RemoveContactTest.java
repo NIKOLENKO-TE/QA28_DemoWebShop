@@ -27,7 +27,6 @@ public class RemoveContactTest extends TestBase {
 
     @Test
     public void removeContactPositiveTest() {
-        app.getContact().pause(1000);
         int sizeBefore = app.getContact().sizeOfContacts();
         System.out.println(sizeBefore);
         app.getContact().removeContact();
@@ -35,5 +34,4 @@ public class RemoveContactTest extends TestBase {
         int sizeAfter = app.getContact().sizeOfContacts();
         Assert.assertEquals(sizeAfter, sizeBefore - 1);
     }
-
 }
