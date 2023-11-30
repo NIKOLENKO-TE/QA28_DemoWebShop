@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 
 public class UserHelperDWS extends BaseHelperDWS {
 
-
     public UserHelperDWS(WebDriver driver) {
         super(driver);
     }
@@ -24,6 +23,7 @@ public class UserHelperDWS extends BaseHelperDWS {
     public void clickConfirmPassword() {
         driver.findElement(By.name("ConfirmPassword")).click();
     }
+
 
     public void fillPassword(String password) {
         driver.findElement(By.name("Password")).clear();
@@ -100,8 +100,6 @@ public class UserHelperDWS extends BaseHelperDWS {
         driver.findElement(By.cssSelector("[href='/']"));
     }
 
-
-
     public void clickOnRecipientEmail() {
         driver.findElement(By.xpath("//input[@id='giftcard_2_RecipientEmail']")).click();
         driver.findElement(By.xpath("//input[@id='giftcard_2_RecipientEmail']")).clear();
@@ -132,4 +130,8 @@ public class UserHelperDWS extends BaseHelperDWS {
         fillEmail(user.getEmail());
         fillPassword(user.getPassword());
     }
+//    public void fillLoginRegisterForm(User user) {
+//        type(By.name("email"), user.getEmail());
+//        type(By.name("password"), user.getPassword());
+//    }
 }

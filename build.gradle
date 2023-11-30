@@ -38,3 +38,18 @@ task qa1(type: Test) {
         systemProperty 'browser', "${browser}"
     }
 }
+
+task dws(type: Test) {
+    useTestNG() {
+        def suite3 = project.hasProperty("suite3")
+        def suite4 = project.hasProperty("suite4")
+        if (suite3) {
+            suites 'src/test/resources/testng_dws.xml'
+        } else if (suite4) {
+            suites 'src/test/resources/regression_dws.xml'
+        }
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+}

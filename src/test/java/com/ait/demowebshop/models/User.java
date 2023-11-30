@@ -1,4 +1,4 @@
-package com.ait.demowebshop.tests;
+package com.ait.demowebshop.models;
 
 public class User {
     private String firstName;

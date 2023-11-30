@@ -1,22 +1,20 @@
-package com.ait.phonebooks.tests;
+package com.ait.demowebshop.tests;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class HomePageTests extends TestBase {
-
+public class HomePageTestsDWS extends TestBaseDWS {
     @BeforeMethod
     public void ensurePrecondition() {
-        if (!app.getHomePage().isHomeComponentPresent()) {
+        if (!app.getHomePage().isHomeLinkPresent()){
             app.getHomePage().clickOnHomeLink();
         }
     }
 
     @Test
     public void isHomeComponentPresentTest() {
-        //System.out.println("Home Component is " + isHomeComponentPresent());
-        Assert.assertTrue(app.getHomePage().isHomeComponentPresent());
+        Assert.assertTrue(app.getHomePage().isHomeLinkPresent());
     }
 
 }

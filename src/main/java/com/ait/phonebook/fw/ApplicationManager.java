@@ -7,23 +7,26 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.time.Duration;
 
 public class ApplicationManager {
+    String browser;
     WebDriver driver;
+
     UserHelper user;
     ContactHelper contact;
     HomePageHelper homePage;
-    String browser;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
     }
 
     public void init() {
-        if (browser.equalsIgnoreCase("chrome")){
+        if (browser.equalsIgnoreCase("chrome")) {
             driver = new ChromeDriver();
-        } else if (browser.equalsIgnoreCase("firefox")){
+        } else if (browser.equalsIgnoreCase("firefox")) {
             driver = new FirefoxDriver();
         }
+
         driver.get("https://telranedu.web.app");
+
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 

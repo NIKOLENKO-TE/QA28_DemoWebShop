@@ -1,37 +1,35 @@
 package com.ait.demowebshop.tests;
 
 import com.ait.demowebshop.fw.ApplicationManagerDWS;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.openqa.selenium.remote.Browser;
+import org.testng.annotations.*;
 
 public class TestBaseDWS {
 
+    protected static ApplicationManagerDWS app = new ApplicationManagerDWS(System
+            .getProperty("browser", Browser.CHROME.browserName()));
 
-    public static ApplicationManagerDWS app = new ApplicationManagerDWS();
-
-    public static void fillRegisterNewUserForm(User user) {
-        app.getUser().chooseMaleGender();
-        app.getUser().clickFirstNameRegistration();
-        app.getUser().fillFirstName(user.getFirstName());
-        app.getUser().clickLastName();
-        app.getUser().fillLastName(user.getLastName());
-        app.getUser().clickEmail();
-        app.getUser().fillEmail(user.getEmail());
-        app.getUser().clickPassword();
-        app.getUser().fillPassword(user.getPassword());
-        app.getUser().clickConfirmPassword();
-        app.getUser().fillConfirmPassword(user.getPassword());
-    }
-
-    @BeforeMethod
+    @BeforeSuite
     public void setUp() {
         app.init();
+        System.out.println("Before Suite!");
     }
 
+    @BeforeTest
+    public void beforeTest() {
+        System.out.println("*****Before Test!");
+    }
 
-    @AfterMethod(enabled = false)
+    @AfterTest
+    public void afterTest() {
+        System.out.println("*****After Test!");
+    }
+
+    // @AfterMethod(enabled = true)
+    @AfterSuite
     public void tearDown() {
-       app.stop();
+        app.stop();
+        System.out.println("After Suite!");
     }
 
 }

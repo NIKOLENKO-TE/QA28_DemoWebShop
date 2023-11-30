@@ -3,8 +3,8 @@
 <suite name="User" verbose="1" >
     <test name="User" >
         <classes>
-            <class name="com.ait.phonebooks.tests.CreateNewAccountTests" />
-            <class name="com.ait.phonebooks.tests.LoginTests" />
+            <class name="com.ait.demowebshop.tests.CreateAccountTestsDWS" />
+            <class name="com.ait.demowebshop.tests.LoginTestsDWS" />
         </classes>
     </test>
 </suite>

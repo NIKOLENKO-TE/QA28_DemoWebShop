@@ -1,11 +1,11 @@
 package com.ait.demowebshop.tests;
-
 import com.ait.demowebshop.models.User;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class CartTestsDWS extends TestBaseDWS {
+
     @BeforeMethod
     public void ensurePrecondition() {
         app.getUser().ensureLogOut();

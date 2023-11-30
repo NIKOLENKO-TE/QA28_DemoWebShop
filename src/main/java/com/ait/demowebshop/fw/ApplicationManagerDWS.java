@@ -2,6 +2,7 @@ package com.ait.demowebshop.fw;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.time.Duration;
 
@@ -10,12 +11,19 @@ public class ApplicationManagerDWS  {
     UserHelperDWS user;
     CartHelperDWS cart;
     HomePageHelperDWS homePage;
-
+    String browser;
+    public ApplicationManagerDWS (String browser) {
+        this.browser = browser;
+    }
     public void init() {
-        driver = new ChromeDriver();
+        if (browser.equalsIgnoreCase("chrome")){
+            driver = new ChromeDriver();
+        } else if (browser.equalsIgnoreCase("firefox")){
+            driver = new FirefoxDriver();
+        }
         driver.get("https://demowebshop.tricentis.com/");
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         user = new UserHelperDWS(driver); // передали конструкторы в хелперы
         cart = new CartHelperDWS(driver);
         homePage = new HomePageHelperDWS(driver);
@@ -36,5 +44,4 @@ public class ApplicationManagerDWS  {
     public void stop() {
         driver.quit();
     }
-
 }

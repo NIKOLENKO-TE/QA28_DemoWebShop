@@ -8,7 +8,10 @@ public class HomePageHelperDWS extends BaseHelperDWS{
         super(driver);
     }
 
-    public boolean isHomeComponentPresent() {
-        return isElementPresent(By.cssSelector("div:nth-child(2)>div>div>h1"));
+    public boolean isHomeLinkPresent() {
+        return isElementPresent(By.cssSelector("[href='/']"));
+    }
+    public void clickOnHomeLink() {
+        click(By.cssSelector("[href='/']"));
     }
 }

@@ -6,29 +6,33 @@ import org.testng.annotations.*;
 
 public class TestBase {
 
-    protected static ApplicationManager app = new ApplicationManager(System.getProperty("browser", Browser.CHROME.browserName()));
+    protected static ApplicationManager app = new ApplicationManager(System.
+            getProperty("browser",Browser.CHROME.browserName()));
 
+    // @BeforeMethod
     @BeforeSuite
     public void setUp() {
-        System.out.println("Before Suite!");
         app.init();
+        System.out.println("Before Suite!");
     }
 
     @BeforeTest
     public void beforeTest() {
-        System.out.println("***Before Test!");
+        System.out.println("*****Before Test!");
     }
 
     @AfterTest
     public void afterTest() {
-        System.out.println("***After Test!");
+        System.out.println("*****After Test!");
     }
 
+
+
+    // @AfterMethod(enabled = true)
     @AfterSuite
-            (enabled = false)
     public void tearDown() {
-        System.out.println("After Suite!");
         app.stop();
+        System.out.println("After Suite!");
     }
 
 }

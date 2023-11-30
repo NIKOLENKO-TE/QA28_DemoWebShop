@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Regression_DWS" verbose="1">
+    <test name="Regression_DWS">
+        <classes>
+            <class name="com.ait.demowebshop.tests.HomePageTestsDWS"/>
+            <class name="com.ait.demowebshop.tests.LoginTestsDWS">
+                <methods>
+                    <exclude name=".*Negative.*"/>
+                </methods>
+            </class>
+            <class name="com.ait.demowebshop.tests.CartTestsDWS"/>
+        </classes>
+    </test>
+</suite>

@@ -1,6 +1,5 @@
 package com.ait.phonebook.fw;
 
-import com.ait.phonebook.fw.ApplicationManager;
 import com.ait.phonebook.models.Contact;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

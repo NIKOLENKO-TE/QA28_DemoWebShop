@@ -1,14 +1,28 @@
 package com.ait.demowebshop.tests;
 
+import com.ait.demowebshop.models.User;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class CreateAccountTestsDWS extends TestBaseDWS {
+    public static void fillRegisterNewUserForm(User user) {
+        app.getUser().chooseMaleGender();
+        app.getUser().clickFirstNameRegistration();
+        app.getUser().fillFirstName(user.getFirstName());
+        app.getUser().clickLastName();
+        app.getUser().fillLastName(user.getLastName());
+        app.getUser().clickEmail();
+        app.getUser().fillEmail(user.getEmail());
+        app.getUser().clickPassword();
+        app.getUser().fillPassword(user.getPassword());
+        app.getUser().clickConfirmPassword();
+        app.getUser().fillConfirmPassword(user.getPassword());
+    }
+
     @BeforeMethod
     public void ensurePrecondition() {
-        app.getUser().ensureLogOut();
         app.init();
     }
 

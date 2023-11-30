@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class BaseHelper {
+
     WebDriver driver;
 
     public BaseHelper(WebDriver driver) {
@@ -16,7 +17,7 @@ public class BaseHelper {
     }
 
     public boolean isElementPresent(By locator) {
-        return driver.findElements(locator).size() > 0;
+        return driver.findElements(locator).size()>0;
     }
 
     public void type(By locator, String text) {
@@ -32,7 +33,9 @@ public class BaseHelper {
     }
 
     public boolean isAlertPresent() {
-        Alert alert = new WebDriverWait(driver, Duration.ofSeconds(20)).until(ExpectedConditions.alertIsPresent());
+
+        Alert alert = new WebDriverWait(driver, Duration.ofSeconds(20))
+                .until(ExpectedConditions.alertIsPresent());
         if (alert == null) {
             return false;
         } else {

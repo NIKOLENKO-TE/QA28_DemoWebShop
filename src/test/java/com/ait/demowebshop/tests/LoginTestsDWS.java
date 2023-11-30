@@ -6,10 +6,12 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class LoginTestsDWS extends TestBaseDWS {
+
     @BeforeMethod
     public void ensurePrecondition() {
-        app.getUser().ensureLogOut();
-        app.init();
+        if (!app.getHomePage().isHomeLinkPresent()){
+            app.getHomePage().clickOnHomeLink();
+        }
     }
 
     @Test(testName = "Login existing user with positive data")
@@ -19,4 +21,11 @@ public class LoginTestsDWS extends TestBaseDWS {
         app.getUser().clickLogInButton();
         Assert.assertTrue(app.getUser().isLogOutButtonIsPresent());
     }
+//    @Test
+//    public void loginRegisteredUserNegativeTestWithoutEmail() {
+//        app.getUser().clickLogInLink();
+//        app.getUser().fillEmailPassword(new User().setPassword("Qwertyuiop$1"));
+//        app.getUser().clickLogInButton();
+//        Assert.assertTrue(app.getUser().isAlertPresent());
+//    }
 }
