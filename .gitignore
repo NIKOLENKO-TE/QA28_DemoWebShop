@@ -1,6 +1,12 @@
 .gradle/
 gradle/
-/build/
+build/classes
+build/generated
+build/reports
+build/resources
+build/tmp
+/out/
+
 setting.gradle
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/

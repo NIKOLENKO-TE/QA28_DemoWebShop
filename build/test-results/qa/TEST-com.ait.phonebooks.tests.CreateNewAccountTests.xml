@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.ait.phonebooks.tests.CreateNewAccountTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-11-30T00:57:24" hostname="PORTISHEAD-PC" time="1.808">
+  <properties/>
+  <testcase name="registerExistedUserNegativeTest" classname="com.ait.phonebooks.tests.CreateNewAccountTests" time="1.808"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

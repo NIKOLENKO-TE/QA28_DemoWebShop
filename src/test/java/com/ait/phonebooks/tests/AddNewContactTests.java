@@ -2,16 +2,11 @@ package com.ait.phonebooks.tests;
 
 import com.ait.phonebook.models.Contact;
 import com.ait.phonebook.models.User;
+import com.ait.phonebook.utils.ContactData;
+import com.ait.phonebook.utils.DataProviders;
+import com.ait.phonebook.utils.UserData;
 import org.testng.Assert;
 import org.testng.annotations.*;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 public class AddNewContactTests extends TestBase {
     @BeforeClass
@@ -31,7 +26,7 @@ public class AddNewContactTests extends TestBase {
             app.getUser().clickOnSignOutButton();
         }
         app.getUser().clickOnLoginLink();
-        app.getUser().fillLoginRegisterForm(new User().setEmail("admin@gmail.com").setPassword("Qwertyuiop$1"));
+        app.getUser().fillLoginRegisterForm(new User().setEmail(UserData.EMAIL).setPassword(UserData.PASSWORD));
         app.getUser().clickOnLoginButton();
     }
 
@@ -40,16 +35,22 @@ public class AddNewContactTests extends TestBase {
         app.getContact().clickOnAddLink();
         logger.info("Test run with data: " + contact);
         app.getContact().fillContactForm(new Contact()
-                .setName("KarlName")
-                .setLastName("KarlLastName")
-                .setPhoneNumber("1234567890")
-                .setEmail("admidnsdskgvjb@gmail.com")
-                .setAddress("Varienstrasse 10").setDescription("Description of input KarlName"));
+                .setName(ContactData.NAME)
+                .setLastName(ContactData.LASTNAME)
+                .setPhoneNumber(ContactData.PHONE)
+                .setEmail(ContactData.EMAIL)
+                .setAddress(ContactData.ADDRESS)
+                .setDescription(ContactData.DESCRIPTION));
         app.getContact().clickOnSaveButton();
-        Assert.assertTrue(app.getContact().isContactCreatedByText("KarlName"));
+        Assert.assertTrue(app.getContact().isContactCreatedByText(ContactData.NAME));
     }
 
-    @Test(dataProvider = "addNewContact")
+    @AfterMethod
+    public void postCondition() {
+        app.getContact().removeContact();
+    }
+
+    @Test(dataProvider = "addNewContact", dataProviderClass = DataProviders.class)
     public void addNewContactFromDataProviderPositiveTest(String name, String lastName, String phone, String email, String address, String description) {
         app.getContact().clickOnAddLink();
         app.getContact().fillContactForm(new Contact()
@@ -62,31 +63,7 @@ public class AddNewContactTests extends TestBase {
         app.getContact().clickOnSaveButton();
     }
 
-    @AfterMethod
-    public void postCondition() {
-        app.getContact().removeContact();
-    }
-
-    @DataProvider
-    public Iterator<Object[]> addNewContactFromCSV() throws IOException {
-        List<Object[]> list = new ArrayList<>();
-        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.csv")));
-        String line = reader.readLine();
-        while (line != null) {
-            String[] split = line.split(",");
-            list.add(new Object[]{new Contact()
-                    .setName(split[0])
-                    .setLastName(split[1])
-                    .setPhoneNumber(split[2])
-                    .setEmail(split[3])
-                    .setAddress(split[4])
-                    .setDescription(split[5])});
-            line = reader.readLine();
-        }
-        return list.iterator();
-    }
-
-    @Test(dataProvider = "addNewContactFromCSV")
+    @Test(dataProvider = "addNewContactFromCSV", dataProviderClass = DataProviders.class)
     public void addNewContactFromDataProviderCSVPositiveTest(Contact contact){
         logger.info("Test run with dta: " + contact.toString());
         app.getContact().clickOnAddLink();

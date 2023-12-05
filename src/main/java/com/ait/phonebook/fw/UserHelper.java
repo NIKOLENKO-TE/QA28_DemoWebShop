@@ -22,7 +22,7 @@ public class UserHelper extends BaseHelper{
     }
 
     public void fillLoginRegisterForm(User user) {
-        type(By.name("email"), user.getEmail());
+        type(By.name("emai"), user.getEmail());
         type(By.name("password"), user.getPassword());
     }
 
