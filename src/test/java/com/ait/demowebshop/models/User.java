@@ -28,6 +28,16 @@ public class User {
         return this;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
     public User setEmail(String email) {
         this.email = email;
         return this;

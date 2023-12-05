@@ -38,6 +38,14 @@ public class Contact {
         return this;
     }
 
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
+
     public String getName() {
         return name;
     }
