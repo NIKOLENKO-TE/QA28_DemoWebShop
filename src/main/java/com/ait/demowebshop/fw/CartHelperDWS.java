@@ -7,10 +7,6 @@ import org.openqa.selenium.WebElement;
 public class CartHelperDWS extends BaseHelperDWS {
     private String h1NameOfProductToCart;
 
-    public CartHelperDWS(WebDriver driver) {
-        super(driver);
-    }
-
     public void rememberProductNameToCart() {
         h1NameOfProductToCart = driver.findElement(By.tagName("h1")).getText();
     }
@@ -22,7 +18,13 @@ public class CartHelperDWS extends BaseHelperDWS {
         return actualProductText.contains(expectedProductText);
     }
 
-    public void clickOnFirstProduct() {
-        driver.findElement(By.xpath("//div[@class='product-grid home-page-product-grid']//div[@class='item-box'][1]")).click();
+    public CartHelperDWS(WebDriver driver) {
+        super(driver);
     }
+
+    public void clickOnGiftCardProduct() {
+        driver.findElement(By.cssSelector("div.master-wrapper-page:nth-child(4) div.master-wrapper-content div.master-wrapper-main:nth-child(5) div.center-3 div.page.home-page div.page-body div.product-grid.home-page-product-grid:nth-child(4) div.item-box:nth-child(2) div.product-item > div.picture")).click();
+        System.out.println("элемент ПОДАРОЧНАЯ КАРТА найден");
+    }
+
 }

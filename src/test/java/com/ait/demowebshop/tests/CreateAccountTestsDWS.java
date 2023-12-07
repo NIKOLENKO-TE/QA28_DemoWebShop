@@ -29,7 +29,9 @@ public class CreateAccountTestsDWS extends TestBaseDWS {
 
     @BeforeMethod
     public void ensurePrecondition() {
-        app.init();
+        if (!app.getUser().isLoginLinkPresent()){
+            app.getUser().clickLogOutLink();
+        }
     }
 
     @Test(testName = "Register a new user with positive data")
@@ -41,12 +43,18 @@ public class CreateAccountTestsDWS extends TestBaseDWS {
                 .setEmail("adfzdmsbnfbdfb@gmail.com")
                 .setPassword("adfzdmsbnfbdfb@gmail.com"));
         app.getUser().clickOnRegistrationButton();
+        WebElement errorMessage = app.getUser().checkErrorMessageEmailAlreadyExist();
+        Assert.assertTrue(errorMessage.isDisplayed());
     }
 
     @Test(testName = "Register an existing user")
     public void registerExistedUserNegativeTest() {
         app.getUser().clickOnRegisterLink();
-        fillRegisterNewUserForm(new User().setFirstName("Tymofii").setLastName("Nikolenko").setEmail("admfix727sbnfbdfb@gmail.com").setPassword("Adminbbsbfbdfb@gmail.com"));
+        fillRegisterNewUserForm(new User()
+                .setFirstName("Tymofii")
+                .setLastName("Nikolenko")
+                .setEmail("admfix727sbnfbdfb@gmail.com")
+                .setPassword("Adminbbsbfbdfb@gmail.com"));
         app.getUser().clickOnRegistrationButton();
         WebElement errorMessage = app.getUser().checkErrorMessageEmailAlreadyExist();
         Assert.assertTrue(errorMessage.isDisplayed());

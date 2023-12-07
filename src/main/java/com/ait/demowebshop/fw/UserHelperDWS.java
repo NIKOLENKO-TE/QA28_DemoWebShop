@@ -2,6 +2,7 @@ package com.ait.demowebshop.fw;
 
 import com.ait.demowebshop.models.User;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -32,7 +33,9 @@ public class UserHelperDWS extends BaseHelperDWS {
 
     public void fillEmail(String email) {
         driver.findElement(By.name("Email")).clear();
-        driver.findElement(By.name("Email")).sendKeys(email);
+        if (email != null) {
+            driver.findElement(By.name("Email")).sendKeys(email);
+        }
     }
 
     public void clickPassword() {
@@ -87,7 +90,12 @@ public class UserHelperDWS extends BaseHelperDWS {
     public void clickLogInLink() {
         driver.findElement(By.cssSelector("[href='/login']")).click();
     }
-
+    public void clickLogOutLink() {
+        driver.findElement(By.cssSelector("[href='/logout']")).click();
+    }
+    public boolean isLoginLinkPresent() {
+        return isElementPresent(By.linkText("Log in"));
+    }
     public void clickLogInButton() {
         driver.findElement(By.cssSelector("[value='Log in']")).click();
     }
@@ -111,7 +119,8 @@ public class UserHelperDWS extends BaseHelperDWS {
     }
 
     public void clickShoppingCartLink() {
-        driver.findElement(By.cssSelector("[href='/cart']")).click();
+        driver.findElement(By.cssSelector("div.master-wrapper-page:nth-child(4) div.master-wrapper-content div.header:nth-child(2) div.header-links-wrapper div.header-links ul:nth-child(1) li:nth-child(3) > a.ico-cart")).click();
+        System.out.println("кнопка КОРЗИНА нажата");
     }
 
     public void clickAddToCartButton() {
@@ -130,8 +139,21 @@ public class UserHelperDWS extends BaseHelperDWS {
         fillEmail(user.getEmail());
         fillPassword(user.getPassword());
     }
-//    public void fillLoginRegisterForm(User user) {
-//        type(By.name("email"), user.getEmail());
-//        type(By.name("password"), user.getPassword());
-//    }
+
+    public boolean isErrorLoginPresent() {
+        try {
+            driver.findElement(By.xpath("//span[contains(text(),'Login was unsuccessful. Please correct the errors ')]"));
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+    public boolean isBarNotificationPresent() {
+        try {
+            driver.findElement(By.xpath("//div[@id='bar-notification']"));
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
 }

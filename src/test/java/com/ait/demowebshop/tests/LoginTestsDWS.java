@@ -12,20 +12,22 @@ public class LoginTestsDWS extends TestBaseDWS {
         if (!app.getHomePage().isHomeLinkPresent()){
             app.getHomePage().clickOnHomeLink();
         }
+            app.getUser().clickLogInLink();
     }
 
     @Test(testName = "Login existing user with positive data")
     public void loginRegisteredUserPositiveTest() {
-        app.getUser().clickLogInLink();
-        app.getUser().fillEmailPassword(new User().setEmail("admfix727sbnfbdfb@gmail.com").setPassword("Adminbbsbfbdfb@gmail.com"));
+        app.getUser().fillEmailPassword(new User()
+                .setEmail("admfix727sbnfbdfb@gmail.com")
+                .setPassword("Adminbbsbfbdfb@gmail.com"));
         app.getUser().clickLogInButton();
         Assert.assertTrue(app.getUser().isLogOutButtonIsPresent());
     }
-//    @Test
-//    public void loginRegisteredUserNegativeTestWithoutEmail() {
-//        app.getUser().clickLogInLink();
-//        app.getUser().fillEmailPassword(new User().setPassword("Qwertyuiop$1"));
-//        app.getUser().clickLogInButton();
-//        Assert.assertTrue(app.getUser().isAlertPresent());
-//    }
+
+    @Test
+    public void loginRegisteredUserNegativeTestWithoutEmail() {
+        app.getUser().fillEmailPassword(new User().setPassword("Qwertyuiop$1"));
+        app.getUser().clickLogInButton();
+        Assert.assertTrue(app.getUser().isErrorLoginPresent());
+    }
 }
