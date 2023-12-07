@@ -4,12 +4,14 @@
     <test name="Regression_DWS">
         <classes>
             <class name="com.ait.demowebshop.tests.HomePageTestsDWS"/>
+            <class name="com.ait.demowebshop.tests.CartTestsDWS"/>
+            <class name="com.ait.demowebshop.tests.CreateAccountTestsDWS"/>
             <class name="com.ait.demowebshop.tests.LoginTestsDWS">
                 <methods>
                     <exclude name=".*Negative.*"/>
                 </methods>
             </class>
-            <class name="com.ait.demowebshop.tests.CartTestsDWS"/>
+
         </classes>
     </test>
 </suite>
