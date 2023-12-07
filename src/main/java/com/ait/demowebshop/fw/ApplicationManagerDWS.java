@@ -18,25 +18,18 @@ public class ApplicationManagerDWS {
         this.browser = browser;
     }
 
+    private String chromedriverProcessId;
+
     public void init() {
-//        if (browser.equalsIgnoreCase("chrome")){
-//            driver = new ChromeDriver();
-//        } else if (browser.equalsIgnoreCase("firefox")){
-//            driver = new FirefoxDriver();
-//        }
-//        driver.get("https://demowebshop.tricentis.com/");
-//        driver.manage().window().maximize();
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("headless");
             driver = new ChromeDriver(options);
-//            options.addArguments("windows-size=1800*900");
         } else if (browser.equalsIgnoreCase("firefox")) {
             driver = new FirefoxDriver();
         }
         driver.get("https://demowebshop.tricentis.com/");
-        user = new UserHelperDWS(driver); // передали конструкторы в хелперы
+        user = new UserHelperDWS(driver);
         cart = new CartHelperDWS(driver);
         homePage = new HomePageHelperDWS(driver);
     }
@@ -55,11 +48,15 @@ public class ApplicationManagerDWS {
 
     public void stop() {
         driver.quit();
+        // Завершаем только процесс chromedriver.exe
+        if (chromedriverProcessId != null) {
+            killProcess(chromedriverProcessId);
+        }
+    }
+
+    private void killProcess(String processId) {
         try {
-            if (browser.equalsIgnoreCase("chrome")) {
-                Runtime.getRuntime().exec("taskkill /F /IM chrome.exe");
-                Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
-            }
+            Runtime.getRuntime().exec("taskkill /F /PID " + processId);
         } catch (IOException e) {
             e.printStackTrace();
         }
