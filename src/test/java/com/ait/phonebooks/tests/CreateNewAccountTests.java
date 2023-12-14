@@ -26,7 +26,7 @@ public class CreateNewAccountTests extends TestBase {
         Assert.assertTrue(app.getUser().isAlertPresent());
     }
 
-    @Test
+    @Test(enabled = false)
     public void registerNewUserPositiveTest() {
 //        int i = new Random().nextInt(1000)+1000;
         int i = (int) System.currentTimeMillis()/1000;

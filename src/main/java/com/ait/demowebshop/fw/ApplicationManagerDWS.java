@@ -56,7 +56,7 @@ public class ApplicationManagerDWS {
 
     private void killProcess(String processId) {
         try {
-            Runtime.getRuntime().exec("taskkill /F /PID " + processId);
+            Runtime.getRuntime().exec("taskkill /F /PID " + processId); // taskkill /F /IM chromedriver.exe /T
         } catch (IOException e) {
             e.printStackTrace();
         }
